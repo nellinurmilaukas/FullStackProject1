@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Message</title>
+</head>
+<body>
+    <h1>Add New Message (AJAX)</h1>
+    <form id="ajax-form">
+        <label for="ajax-username">Username:</label><br>
+        <input type="text" id="ajax-username" name="username" required><br>
+        <label for="ajax-country">Country:</label><br>
+        <input type="text" id="ajax-country" name="country" required><br>
+        <label for="ajax-message">Message:</label><br>
+        <textarea id="ajax-message" name="message" required></textarea><br>
+        <button type="button" id="ajax-submit">Submit</button>
+    </form>
+    <div id="ajax-response"></div>
+
+    <!-- Include the separate AJAX script file -->
+    <script src="ajax.js"></script>
+</html>

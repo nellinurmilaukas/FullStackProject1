@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Message</title>
+</head>
+<body>
+    <h1>Add New Message</h1>
+    <form id="ajax-form" action="/newmessage" method="POST">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="country">Country:</label><br>
+        <input type="text" id="country" name="country" required><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" required></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="ajax-response"></div>
+    <script src="newmessage.js"></script>
+</body>
+</html>
+
