@@ -2,19 +2,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('ajax-form').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the form from submitting normally
 
-        // Collect form data
-        const username = document.getElementById('ajax-username').value;
-        const country = document.getElementById('ajax-country').value;
-        const message = document.getElementById('ajax-message').value;
+        const username = document.getElementById('username').value;
+        const country = document.getElementById('country').value;
+        const message = document.getElementById('message').value;
 
-        // Create a new XMLHttpRequest object
         const xhr = new XMLHttpRequest();
-
-        // Configure the request
         xhr.open('POST', '/ajaxmessage');
         xhr.setRequestHeader('Content-Type', 'application/json');
 
-        // Set up the callback function
         xhr.onload = function() {
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText);
@@ -25,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
 
-        // Send the request with form data
         xhr.send(JSON.stringify({ username, country, message }));
     });
 });

@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const successMessage = document.getElementById('success-message');
+
     document.getElementById('ajax-form').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the form from submitting normally
 
@@ -12,9 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         xhr.onload = function() {
             if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                const messagesHtml = response.map(entry => `<p><strong>${entry.username}</strong> from ${entry.country}: ${entry.message}</p>`).join('');
-                document.getElementById('ajax-response').innerHTML = messagesHtml;
+                successMessage.style.display = 'block'; // Show success message
+                setTimeout(function() {
+                    successMessage.style.display = 'none'; // Hide success message after 3 seconds
+                }, 3000);
             } else {
                 console.error('Request failed. Status:', xhr.status);
             }
