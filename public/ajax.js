@@ -12,9 +12,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
         xhr.onload = function() {
             if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                const messagesHtml = response.map(entry => `<p><strong>${entry.username}</strong> from ${entry.country}: ${entry.message}</p>`).join('');
-                document.getElementById('ajax-response').innerHTML = messagesHtml;
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (Array.isArray(response)) {
+                        const messagesHtml = response.map(entry => 
+                            `<p><strong>${entry.username || 'Unknown'}</strong> from ${entry.country || 'Unknown'}: ${entry.message || ''}</p>`
+                        ).join('');
+                        const ajaxResponseElement = document.getElementById('ajax-response');
+                        if (ajaxResponseElement) {
+                            ajaxResponseElement.innerHTML = messagesHtml;
+                        } else {
+                            console.error('Element with id "ajax-response" not found.');
+                        }
+                    } else {
+                        console.error('Expected array response, received:', response);
+                    }
+                } catch (e) {
+                    console.error('Failed to parse JSON response:', xhr.responseText);
+                }
             } else {
                 console.error('Request failed. Status:', xhr.status);
             }
