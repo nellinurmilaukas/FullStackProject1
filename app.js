@@ -1,3 +1,5 @@
+//NODE SERVER
+
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
@@ -18,15 +20,7 @@ app.get('/', (req, res) => {
 
 // Route to load and display guestbook entries
 app.get('/guestbook', (req, res) => {
-    fs.readFile('data/guestbook.json', 'utf8', (err, data) => {
-        if (err) {
-            console.error(err);
-            res.status(500).send('Error reading guestbook');
-            return;
-        }
-        const guestbookEntries = JSON.parse(data);
-        res.json(guestbookEntries);
-    });
+    res.sendFile(__dirname + '/public/guestbook.html');
 });
 
 // Route to render the form for adding new messages
